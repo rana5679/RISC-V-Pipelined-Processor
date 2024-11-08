@@ -13,10 +13,15 @@
 `timescale 1ns / 1ps
 `include "defines.v"
 
-module ALUcu(input [31:0] inst, input [1:0] ALUOp, output reg  [3:0] ALUSel);
+module ALUcu(
+    input [31:0] inst,
+    input [1:0] ALUOp,
+    output reg  [3:0] ALUSel
+    );
+    
     always @* begin
-        case (ALUOp)
-            2'b00: ALUSel = `ALU_ADD; 
+        case (ALUOp) // set the ALU selection based on the ALUOP
+            2'b00: ALUSel = `ALU_ADD;
             2'b01: ALUSel = `ALU_SUB;
             2'b10: begin
             case(inst[`IR_funct3])

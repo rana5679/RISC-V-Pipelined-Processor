@@ -50,3 +50,15 @@
 
 `define     SYS_EC_EB       3'b000
 
+`define     MEM_SIZE        1024
+`define     BYTE_1          7:0
+`define     BYTE_2          15:8
+`define     BYTE_3          23:16
+`define     BYTE_4          31:24
+
+`define     PC_SIZE         12
+`define     PC		    11:0
+`define     PC_W	    11:2
+`define     PC_W_IN	    9:0
+
+`define     JAL             inst[3]

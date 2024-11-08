@@ -8,28 +8,37 @@
 * Description: put your description here
 *
 * Change history: 27/10/23 - Created Module; Added branch logic
+// Nov 8: fixed guidlines and added comments
 *
 **********************************************************************/
 
-module BranchCu(input cf,zf,sf,vf, branch, input [2:0] func3, output reg branchSignal);
+module BranchCU(
+    input cf,
+    input zf,
+    input sf,
+    input vf, 
+    input isBranch,
+    input [2:0] func3,
+    output reg branch);
+
     always @(*) begin
-        if(branch) begin
+        if(isBranch) begin // if this instruction is a branch
             case (func3)
                 `BR_BEQ: //BEQ
-                branchSignal = zf;
+                branch = zf;
                 `BR_BNE: //BNE
-                branchSignal = ~zf;
+                branch = ~zf;
                 `BR_BLT: //BLT
-                branchSignal = (sf != vf);
+                branch = (sf != vf);
                `BR_BGE: //BGE
-                branchSignal = (sf == vf);
+                branch = (sf == vf);
                 `BR_BLTU: //BLTU
-                branchSignal = ~cf;
+                branch = ~cf;
                 `BR_BGEU: //BGEU
-                branchSignal = cf;
+                branch = cf;
             endcase
         end
         else // if the instr is not a branch
-            branchSignal = 1'b0;
+            branch = 1'b0;
     end
 endmodule

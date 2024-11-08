@@ -1,7 +1,14 @@
 `timescale 1ns / 1ps
 
-module DFlipFlop
-(input clk, input rst, input D, output reg Q);
+// Nov 8: fixed guidlines and added comments
+
+module DFlipFlop(
+input clk,
+input rst,
+input D,
+output reg Q);
+
+
     always @ (posedge clk or posedge rst)
         if (rst) begin
         Q <= 1'b0;
